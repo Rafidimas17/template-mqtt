@@ -1,27 +1,24 @@
 <?php
-// app/Events/MqttDataReceived.php
 namespace App\Events;
 
+use App\Models\MqttData;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MqttDataReceived
+class MqttDataUpdated
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, SerializesModels;
 
     public $mqttData;
 
-    public function __construct($mqttData)
+    public function __construct(MqttData $mqttData)
     {
         $this->mqttData = $mqttData;
     }
 
     public function broadcastOn()
     {
-        return new Channel('mqtt-data');
+        return new Channel('mqtt_data.' . $this->mqttData->kendaraan_id);
     }
-
 }
-

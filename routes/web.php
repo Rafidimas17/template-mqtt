@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MqttController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,5 +19,6 @@ use App\Http\Controllers\MqttController;
 // Route::get('/', function () {
 //     return view('');
 // });
-Route::view('/', 'welcome');
-Route::post('/mqtt-data', [MqttController::class, 'store']);
+Route::get('/', [MqttController::class, 'index']);
+Route::post('/mqtt/update-status/{id}', [MqttController::class, 'updateStatus']);
+Route::post('/mqtt/store-data', [MqttController::class, 'storeMqttData']);

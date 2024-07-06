@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('kendaraan.{id}', function ($user, $id) {
+    return true;
+});
+
+Broadcast::channel('mqtt_data.{kendaraan_id}', function ($user, $kendaraan_id) {
+    return true;
+});
+
+Broadcast::channel('kendaraan-channel', function ($user) {
+    return true; // Pastikan Anda menyesuaikan otentikasi jika diperlukan
+});
